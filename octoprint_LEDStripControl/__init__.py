@@ -125,9 +125,9 @@ class LEDStripControlPlugin(octoprint.plugin.AssetPlugin,
 		self._unregister_leds()
 		self._pigpiod.stop()
 
-	def HandleM150(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
-		if gcode and cmd.startswith("M150"):
-			self._logger.debug(u"M150 Detected: %s" % (cmd,))
+	def HandleGCode(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
+		if gcode and cmd.startswith("M123"):
+			self._logger.debug(u"M123 Detected: %s" % (cmd,))
 			# Emulating Marlin 1.1.0's syntax
 			# https://github.com/MarlinFirmware/Marlin/blob/RC/Marlin/Marlin_main.cpp#L6133
 			dutycycles = {'r':0.0, 'g':0.0, 'b':0.0, 'w':0.0}
@@ -213,6 +213,6 @@ def __plugin_load__():
 	global __plugin_hooks__
 	__plugin_hooks__ = {
 		"octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information,
-		"octoprint.comm.protocol.gcode.queuing": __plugin_implementation__.HandleM150
+		"octoprint.comm.protocol.gcode.queuing": __plugin_implementation__.HandleGCode
 	}
 
