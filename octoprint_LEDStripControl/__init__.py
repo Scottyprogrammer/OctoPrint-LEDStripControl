@@ -127,6 +127,7 @@ class LEDStripControlPlugin(octoprint.plugin.AssetPlugin,
 
 	def HandleGCode(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
 		if gcode and cmd.startswith("M123"):
+		#if gcode and cmd.startswith( self._settings.get([gcode]) ):
 			self._logger.debug(u"M123 Detected: %s" % (cmd,))
 			# Emulating Marlin 1.1.0's syntax
 			# https://github.com/MarlinFirmware/Marlin/blob/RC/Marlin/Marlin_main.cpp#L6133
