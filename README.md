@@ -1,15 +1,16 @@
 # OctoPrint-LEDStripControl
 
-OctoPrint Plugin that intercepts M150 GCode commands and controls local GPIOs accordingly.
+OctoPrint Plugin that intercepts custom GCode commands and controls local GPIOs accordingly.
 
-Implements the M150 command syntax from the latest Marlin.
-
-        M150: Set Status LED Color - Use R-U-B for R-G-B Optional (W)
-        M150 R255       ; Turn LED red
-        M150 R255 U127  ; Turn LED orange (PWM only)
-        M150            ; Turn LED off
-        M150 R U B      ; Turn LED white
-        M150 W          ; Turn LED white if using RGBW strips (optional)
+Implements a custom gcode command syntax.
+        
+        M123 as an example:
+        M123: Set Status LED Color - R-G-B Optional (W)
+        M123 R255       ; Turn LED red
+        M123 R255 G127  ; Turn LED orange (PWM only)
+        M123            ; Turn LED off
+        M123 R G B      ; Turn LED white
+        M123 W          ; Turn LED white if using RGBW strips (optional)
 
 ## Setup
 
